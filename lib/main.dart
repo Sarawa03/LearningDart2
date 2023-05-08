@@ -1,5 +1,120 @@
 import 'package:flutter/material.dart';
 
+//Enumerations
+enum AnimalType { cat, dog, bunny }
+
+//Switch
+void enumerations(AnimalType animalType) {
+  switch (animalType) {
+    case AnimalType.bunny:
+      print("Bunny");
+      break;
+    case AnimalType.dog:
+      print("Dog");
+      break;
+    case AnimalType.cat:
+      print("Cat");
+      break;
+    default:
+      print("No animal");
+  }
+  print(animalType);
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------- */
+//Classes and constructors
+class Person {
+  final String name;
+
+  Person(this.name);
+
+  //Methods
+  void printName() {
+    print(name);
+  }
+
+  void run() {
+    print("Running");
+  }
+
+  void breath() {
+    print("Breathing");
+  }
+}
+
+void testClass() {
+  final person = Person('Sara');
+  person.run();
+  person.breath();
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------- */
+//Objects
+void testObjects() {
+  final foo = Person('Sara');
+  foo.printName();
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------- */
+//Abstract classes
+abstract class LivingThing {
+  void breathe() {
+    print("Living thing is breathing");
+  }
+
+  void move() {
+    print("Living thing is breathing");
+  }
+}
+
+//Inheritance and subclassing
+
+class Cat extends LivingThing {}
+
+void inheritanceTest() {
+  final fluffers = Cat();
+  fluffers.move();
+  fluffers.breathe();
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------- */
+
+class Cat2 {
+  final String name;
+
+  //Factory constructors
+  Cat2(this.name);
+  factory Cat2.fluffBall() {
+    return Cat2('Fluff ball');
+  }
+
+  //Custom operators
+  @override
+  bool operator ==(covariant Cat2 other) => other.name == name;
+
+  @override
+  int get hashCode => name.hashCode;
+}
+
+void factoryConstructors() {
+  final fluffBall = Cat2.fluffBall();
+  print(fluffBall.name);
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------- */
+//Custom operators (line 91)
+
+void customOperators() {
+  final cat1 = Cat2('Foo');
+  final cat2 = Cat2('Foo');
+
+  if (cat1 == cat2) {
+    print('They are equal');
+  } else {
+    print('They are not equal');
+  }
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,6 +125,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    enumerations(AnimalType.dog);
+    testClass();
+    testObjects();
+    inheritanceTest();
+    factoryConstructors();
+    customOperators();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
